@@ -1,15 +1,15 @@
 # projetoColetivoC
 Projeto colaborativo entre os alunos realizado na disciplina de algorítimos e estruturas de dados
 
-1 - pesquisa sequencial (Livia+Crhystian)
-2 - pesquisa binária (Kamile+Maria Fernanda)
-3 - pesquisa tabela hash (Miguel+Vitor)
-4 - calcular tempo (Matheus)
-5 - menu (Allan+Caio Cunha)
-6 - criar/preencher arquivo(Alexandre)
-7 - ler arquivo para memória(Marcela + Gustavo)
-8 - montar tabela comparativa (Jullian+CaioT.)
-9 - montar o trabalho (Leandro + Oswaldo)
+- pesquisa sequencial (Livia+Crhystian)
+- pesquisa binária (Kamile+Maria Fernanda)
+- pesquisa tabela hash (Miguel+Vitor)
+- calcular tempo (Matheus)
+- menu (Allan+Caio Cunha)
+- criar/preencher arquivo(Alexandre)
+- ler arquivo para memória(Marcela + Gustavo)
+- montar tabela comparativa (Jullian+CaioT.)
+- montar o trabalho (Leandro + Oswaldo)
 
 Struct a ser implementada no trabalho:
 struct Produto
