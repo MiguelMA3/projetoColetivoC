@@ -13,7 +13,7 @@ Projeto colaborativo entre os alunos realizado na disciplina de algorítimos e e
 
 Struct a ser implementada no trabalho:
 
-`
+```
 struct Produto
 {
       int codigo;
@@ -21,4 +21,4 @@ struct Produto
       int qtd_estoque;
       float preco_unit;
 };
-´
+```
