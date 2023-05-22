@@ -13,10 +13,12 @@ Projeto colaborativo entre os alunos realizado na disciplina de algorítimos e e
 
 Struct a ser implementada no trabalho:
 
-```struct Produto
+`
+struct Produto
 {
       int codigo;
       char nome[55];
       int qtd_estoque;
       float preco_unit;
-};```
+};
+´
