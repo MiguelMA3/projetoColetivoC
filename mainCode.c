@@ -2,38 +2,54 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct Produto
-{
+typedef struct {
 	int codigo;
 	char nome[55];
 	int qtd_estoque;
     float preco_unit;
-};
+} Produto;
+
+void pesquisaSequencial() {
+	printf("Opção de pesquisa sequencial selecionada\n");
+}
+
+void pesquisaBinaria() {
+	printf("Opção de pesquisa binária selecionada\n");
+}
+
+void tabelaHash() {
+	
+}
+
+void pesquisaHash() {
+	printf("Opção de pesquisa de tabela hash selecionada\n");
+}
+
 
 int main(){
-	FILE *arq = fopen("PRODUTOS", "w");
+	FILE *arq = fopen("PRODUTOS", "a");
 	if (arq == NULL)
 		exit(0);
-	
-	struct Produto produto1;
+
+	Produto produto1;
 	produto1.codigo = 123;
 	strcpy(produto1.nome, "monitor");
 	produto1.preco_unit = 500.00;
 	produto1.qtd_estoque = 40;
 	
-	struct Produto produto2;
+	Produto produto2;
 	produto2.codigo = 1234;
 	strcpy(produto2.nome, "computador");
 	produto2.preco_unit = 1200.00;
 	produto2.qtd_estoque = 16;
 	
-	struct Produto produto3;
+	Produto produto3;
 	produto3.codigo = 12345;
 	strcpy(produto3.nome, "teclado");
 	produto3.preco_unit = 100.00;
 	produto3.qtd_estoque = 100;
 	
-	struct Produto produto4;
+	Produto produto4;
 	produto4.codigo = 123456;
 	strcpy(produto4.nome, "mouse");
 	produto4.preco_unit = 80.00;
@@ -46,6 +62,35 @@ int main(){
 	fprintf(arq, "%d %s %.2f %d\n", produto4.codigo, produto4.nome, produto4.preco_unit, produto4.qtd_estoque);
 	
 	fclose(arq);
-	return 0;
-}
 
+	int opcao;
+
+	do {
+		system("cls");
+		printf("\nMenu de Opções:\n");
+		printf("1. Pesquisa Sequencial\n");
+		printf("2. Pesquisa Binária\n");
+		printf("3. Pesquisa de Tabela Hash\n");
+		printf("4. Sair\n");
+		printf("Escolha uma opção: ");
+		scanf("%d", &opcao);
+
+		switch (opcao) {
+			case 1:
+				pesquisaSequencial();
+				break;
+			case 2:
+				pesquisaBinaria();
+				break;
+			case 3:
+				pesquisaHash();
+				break;
+			case 4:
+				printf("Saindo do programa...\n");
+				break;
+			default:
+				printf("Opção inválida! Tente novamente.\n");
+				break;
+		}
+	} while (opcao != 4);
+}
