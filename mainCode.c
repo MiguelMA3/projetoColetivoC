@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+FILE *arq;
+
 typedef struct {
 	int codigo;
 	char nome[55];
@@ -17,17 +19,74 @@ void pesquisaBinaria() {
 	printf("Opção de pesquisa binária selecionada\n");
 }
 
-void tabelaHash() {
-	
+#define HASH_SIZE 11000
+typedef struct {
+    Produto* produtos[HASH_SIZE];
+} TabelaHash;
+
+TabelaHash tabela;
+
+void iniciarTabelaHash() {
+    for (int i = 0; i < HASH_SIZE; i++)
+        tabela.produtos[i] = NULL;
+}
+
+int calcularHash(int codigo) {
+    return codigo % HASH_SIZE;
+}
+
+void inserirProduto(Produto* produto) {
+    int hash = calcularHash(produto->codigo);
+    tabela.produtos[hash] = produto;
+}
+
+Produto* pesquisarProduto(int codigo) {
+    int hash = calcularHash(codigo);
+    return tabela.produtos[hash];
 }
 
 void pesquisaHash() {
-	printf("Opção de pesquisa de tabela hash selecionada\n");
+    iniciarTabelaHash();
+
+    arq = fopen("PRODUTOS.csv", "r");
+    if (arq == NULL)
+        exit(0);
+
+    while (!feof(arq)) {
+        Produto* produto = (Produto*)malloc(sizeof(Produto));
+        fscanf(arq, "%d,%[^,],%f,%d\n", &produto->codigo, produto->nome, &produto->preco_unit, &produto->qtd_estoque);
+        inserirProduto(produto);
+    }
+
+    fclose(arq);
+
+    int codigo;
+	fflush(stdin);
+    printf("Digite o código do produto a ser pesquisado: ");
+    scanf("%d", &codigo);
+
+    Produto* resultado = pesquisarProduto(codigo);
+
+    if (resultado != NULL) {
+        printf("Produto encontrado:\n");
+        printf("Código: %d\n", resultado->codigo);
+        printf("Nome: %s\n", resultado->nome);
+        printf("Preço unitário: %.2f\n", resultado->preco_unit);
+        printf("Quantidade em estoque: %d\n", resultado->qtd_estoque);
+    } else {
+        printf("Produto não encontrado.\n");
+    }
+
+    for (int i = 0; i < HASH_SIZE; i++) {
+        if (tabela.produtos[i] != NULL) {
+            free(tabela.produtos[i]);
+        }
+    }
 }
 
 
 int main(){
-	FILE *arq = fopen("PRODUTOS", "a");
+	arq = fopen("PRODUTOS", "a");
 	if (arq == NULL)
 		exit(0);
 
