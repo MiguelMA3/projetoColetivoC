@@ -6,7 +6,7 @@ typedef struct {
 	int codigo;
 	char nome[55];
 	int qtd_estoque;
-    float preco_unit;
+	float preco_unit;
 } Produto;
 
 void pesquisaSequencial() {
