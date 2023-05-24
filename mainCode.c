@@ -27,7 +27,8 @@ typedef struct {
 TabelaHash tabela;
 
 void iniciarTabelaHash() {
-    for (int i = 0; i < HASH_SIZE; i++)
+    int i;
+	for (i = 0; i < HASH_SIZE; i++)
         tabela.produtos[i] = NULL;
 }
 
@@ -49,8 +50,10 @@ void pesquisaHash() {
     iniciarTabelaHash();
 
     arq = fopen("PRODUTOS.csv", "r");
-    if (arq == NULL)
-        exit(0);
+    if (arq == NULL) {
+        printf("Erro ao abrir o arquivo PRODUTOS.csv.\n");
+        return;
+    }
 
     while (!feof(arq)) {
         Produto* produto = (Produto*)malloc(sizeof(Produto));
@@ -61,28 +64,33 @@ void pesquisaHash() {
     fclose(arq);
 
     int codigo;
-	fflush(stdin);
-    printf("Digite o c√≥digo do produto a ser pesquisado: ");
+    printf("Digite o cÛdigo do produto a ser pesquisado: ");
     scanf("%d", &codigo);
 
     Produto* resultado = pesquisarProduto(codigo);
 
     if (resultado != NULL) {
         printf("Produto encontrado:\n");
-        printf("C√≥digo: %d\n", resultado->codigo);
+        printf("CÛdigo: %d\n", resultado->codigo);
         printf("Nome: %s\n", resultado->nome);
-        printf("Pre√ßo unit√°rio: %.2f\n", resultado->preco_unit);
+        printf("PreÁo unit·rio: %.2f\n", resultado->preco_unit);
         printf("Quantidade em estoque: %d\n", resultado->qtd_estoque);
     } else {
-        printf("Produto n√£o encontrado.\n");
+        printf("Produto n„o encontrado.\n");
     }
-
-    for (int i = 0; i < HASH_SIZE; i++) {
+    
+    int i;
+    for (i = 0; i < HASH_SIZE; i++) {
         if (tabela.produtos[i] != NULL) {
             free(tabela.produtos[i]);
         }
     }
+    
+    printf("\nPressione qualquer tecla para continuar...");
+    getchar();
+    getchar();
 }
+
 
 
 int main(){
@@ -143,6 +151,7 @@ int main(){
 				break;
 			case 3:
 				pesquisaHash();
+				getch();
 				break;
 			case 4:
 				printf("Saindo do programa...\n");
