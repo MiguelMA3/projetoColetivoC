@@ -78,7 +78,7 @@ void pesquisaHash() {
 
 void lerArquivo() {
     FILE* arquivo;
-    char linha[200];
+    char linha[15000];
 
     arquivo = fopen("PRODUTOS.csv", "r");
     if (arquivo == NULL) {
