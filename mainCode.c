@@ -38,19 +38,19 @@ Produto* pesquisarProduto(int codigo) {
 
 void pesquisaHash() {
     int codigo;
-    printf("Digite o código do produto: ");
+    printf("Digite o codigo do produto: ");
     scanf("%d", &codigo);
 
     Produto* produto = pesquisarProduto(codigo);
     if (produto != NULL) {
         printf("Produto encontrado:\n");
-		printf("Código: %d\n", produto.codigo);
+		printf("Codigo: %d\n", produto.codigo);
 		printf("Nome: %s\n", produto.nome);
-		printf("Preço: %.2f\n", produto.preco_unit);
+		printf("Preco: %.2f\n", produto.preco_unit);
 		printf("Estoque: %d\n", produto.qtd_estoque);
 		printf("\n");
     } else {
-        printf("Produto não encontrado.\n");
+        printf("Produto nao encontrado.\n");
     }
 }
 
@@ -104,12 +104,12 @@ int main() {
     int opcao;
     do {
         system("cls");
-        printf("\nMenu de Opções:\n");
+        printf("\nMenu de Opcoes:\n");
         printf("1. Pesquisa Sequencial\n");
-        printf("2. Pesquisa Binária\n");
+        printf("2. Pesquisa Binaria\n");
         printf("3. Pesquisa de Tabela Hash\n");
         printf("4. Sair\n");
-        printf("Escolha uma opção: ");
+        printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
 
         switch (opcao) {
@@ -128,7 +128,7 @@ int main() {
                 printf("Saindo do programa...\n");
                 break;
             default:
-                printf("Opção inválida! Tente novamente.\n");
+                printf("Opcao invalida! Tente novamente.\n");
                 break;
         }
     } while (opcao != 4);
