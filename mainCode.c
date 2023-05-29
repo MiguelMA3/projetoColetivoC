@@ -36,13 +36,6 @@ Produto* pesquisarProduto(int codigo) {
     return NULL;
 }
 
-void removerProduto(int codigo) {
-    int chave = hash(codigo);
-    if (tabela[chave].chave != -1 && tabela[chave].produto.codigo == codigo) {
-        tabela[chave].chave = -1;
-    }
-}
-
 void pesquisaHash() {
     int codigo;
     printf("Digite o código do produto: ");
@@ -61,25 +54,21 @@ void pesquisaHash() {
     }
 }
 
-// Função para ler os dados do arquivo e preencher a tabela hash
 void lerArquivo() {
     FILE* arquivo;
     char linha[200];
 
-    // Abrir o arquivo para leitura
     arquivo = fopen("PRODUTOS.csv", "r");
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         return;
     }
 
-    // Ler cada linha do arquivo
     while (fgets(linha, sizeof(linha), arquivo)) {
         Produto produto;
         char* token;
         int campo = 1;
 
-        // Extrair cada campo da linha usando strtok()
         token = strtok(linha, ",");
         while (token != NULL) {
             switch (campo) {
@@ -93,7 +82,7 @@ void lerArquivo() {
                     produto.preco_unit = atof(token);
                     break;
                 case 4:
-                    produto.qtd_estoque = atof(token);
+                    produto.qtd_estoque = atoi(token);
                     break;
             }
 
@@ -101,19 +90,15 @@ void lerArquivo() {
             campo++;
         }
 
-        // Inserir o produto na tabela hash
         inserirProduto(produto);
     }
 
-    // Fechar o arquivo
     fclose(arquivo);
 }
 
-// Função principal (main)
 int main() {
-    // Inicializando a tabela hash
     for (int i = 0; i < TABLE_SIZE; i++) {
-        tabela[i].chave = -1; // Marcando todas as posições como vazias
+        tabela[i].chave = -1;
     }
 
     int opcao;
@@ -129,10 +114,10 @@ int main() {
 
         switch (opcao) {
             case 1:
-                // Implemente a função pesquisaSequencial()
+                //pesquisaSequencial()
                 break;
             case 2:
-                // Implemente a função pesquisaBinaria()
+                //pesquisaBinaria()
                 break;
             case 3:
                 pesquisaHash();
